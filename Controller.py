@@ -24,7 +24,8 @@ def ServerLoop():
 
 
     host = '0.0.0.0'
-    port = 9999
+    port = 5550
+    
     server_socket.bind((host, port))
 
     # Listen for a connection only 1 connection
