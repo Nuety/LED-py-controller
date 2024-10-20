@@ -21,7 +21,7 @@ while True:
         break
 
     client_socket.send(message.encode())
-    time.sleep(0.005)
+    time.sleep(0.025)
 
     res = ""
     try: 
