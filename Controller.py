@@ -1,12 +1,15 @@
 import socket
-
+import subprocess
 
 # Add functions for new programs
 def start_maze():
-    print("Starting process")
+    print("Starting maze")
+
 
 def start_cpu():
-    print("Stopping process")
+    print("Starting cpu")
+    script_path = '/scripts/startcpu.sh'
+    subprocess.call(['bash', script_path])
 
 def default_case():
     print("Unknown instruction")
