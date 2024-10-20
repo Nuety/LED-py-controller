@@ -16,8 +16,7 @@ class cpuServer(SampleBase):
         width = self.matrix.width
         height = self.matrix.height
 
-        for col in range(width):
-            self.matrix.SetPixel(0,col,0,100,0)
+
 
 
         # Set up a server
@@ -117,6 +116,8 @@ class cpuServer(SampleBase):
                         # enforce timeout
                         if timeout == 20:
                             timeout = 0
+                            for col in range(width):
+                                self.matrix.SetPixel(0,col,0,100,0)
                             break
                         
                         timeout += 1
