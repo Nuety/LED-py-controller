@@ -16,7 +16,18 @@ def start_cpu():
 
 def stop_process():
     client_socket.send("Stopping running process".encode())
-    process.terminate()
+    print("Stopping CPU")
+    if process:
+        # Terminate the process
+        process.terminate()  # Graceful termination
+        try:
+            process.wait(timeout=5)  # Wait for the process to terminate
+            print("CPU process terminated successfully.")
+        except subprocess.TimeoutExpired:
+            process.kill()  # Forcefully kill if it doesn't terminate
+            print("CPU process killed forcefully.")
+    else:
+        print("No CPU process running.")
 
 def default_case():
     client_socket.send("Unknown command received".encode())
