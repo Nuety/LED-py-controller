@@ -1,18 +1,27 @@
 import socket
 import subprocess
 
+
 # Add functions for new programs
 def start_maze():
     print("Starting maze")
 
 
 def start_cpu():
+    client_socket.send("Starting cpu reader".encode())
     print("Starting cpu")
     script_path = 'scripts/startcpu.sh'
-    subprocess.call(['bash', script_path])
+    global process
+    process = subprocess.Popen(['bash', script_path])
+
+def stop_process():
+    client_socket.send("Stopping running process".encode())
+    process.terminate()
 
 def default_case():
+    client_socket.send("Unknown command received".encode())
     print("Unknown instruction")
+
 
 switcher = {
     'maze': start_maze,
@@ -38,6 +47,7 @@ def ServerLoop():
 
     while True:
         # Establish a connection with the client
+        global client_socket
         client_socket, addr = server_socket.accept()
         print("Got connection from", addr)
         
@@ -58,10 +68,8 @@ def ServerLoop():
                 # Send an acknowledgment back to the client
                 action = switcher.get(message, default_case)
                 if action != default_case:    
-                    client_socket.send(f"Starting program: {message}".encode())
                     action()
-                else:
-                    client_socket.send("Unknown command received".encode())
+
         
         except socket.error as e:
             print("Socket error:", e)
