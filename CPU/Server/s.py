@@ -16,7 +16,7 @@ class cpuServer(SampleBase):
         width = self.matrix.width
         height = self.matrix.height
 
-        for col in width:
+        for col in range(width):
             self.matrix.SetPixel(0,col,0,100,0)
 
 
