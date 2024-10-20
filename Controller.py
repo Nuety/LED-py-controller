@@ -26,6 +26,7 @@ def default_case():
 switcher = {
     'maze': start_maze,
     'cpu': start_cpu,
+    'stop': stop_process
 }
 
 def ServerLoop():
@@ -67,12 +68,13 @@ def ServerLoop():
                 
                 # Send an acknowledgment back to the client
                 action = switcher.get(message, default_case)
-                if action != default_case:    
-                    action()
+                action()
+
 
         
         except socket.error as e:
             print("Socket error:", e)
+            process.terminate()
         
         finally:
             # Close the client socket when the loop ends
