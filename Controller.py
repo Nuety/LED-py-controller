@@ -8,7 +8,7 @@ def start_maze():
 
 def start_cpu():
     print("Starting cpu")
-    script_path = '/scripts/startcpu.sh'
+    script_path = 'scripts/startcpu.sh'
     subprocess.call(['bash', script_path])
 
 def default_case():
