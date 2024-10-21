@@ -6,7 +6,7 @@ import os
 import sys
 
 script_dir = os.path.abspath(os.path.dirname(__file__))
-project_root = os.path.abspath(os.path.join(script_dir, '..', '..'))
+project_root = os.path.abspath(os.path.join(script_dir, '..'))
 sys.path.append(project_root)
 from rpimatrix.bindings.python.samples.samplebase import SampleBase
 class Maze(SampleBase):
