@@ -1,33 +1,37 @@
 import socket
 import subprocess
-import os
-import signal
+import psutil
 
 # Add functions for new programs
 def start_maze():
     print("Starting maze")
 
+def kill(proc_pid):
+    process = psutil.Process(proc_pid)
+    for proc in process.children(recursive=True):
+        proc.kill()
+    process.kill()
 
 def start_cpu():
     client_socket.send("Starting cpu reader".encode())
     print("Starting cpu")
     script_path = 'scripts/startcpu.sh'
     global process
-    process = subprocess.Popen('exec ' + script_path, shell=True)
+    process = subprocess.Popen(script_path, shell=True)
 
 def stop_process():
     client_socket.send("Stopping running process".encode())
     print("Stopping CPU")
     if process:
         # Terminate the process
-        # os.killpg(os.getpgid(process.pid), signal.SIGTERM)
-        process.terminate()  # Graceful termination
-        try:
-            process.wait(timeout=5)  # Wait for the process to terminate
-            print("CPU process terminated successfully.")
-        except subprocess.TimeoutExpired:
-            process.kill()  # Forcefully kill if it doesn't terminate
-            print("CPU process killed forcefully.")
+        kill(process.pid)
+        # process.terminate()  # Graceful termination
+        # try:
+        #     process.wait(timeout=5)  # Wait for the process to terminate
+        #     print("CPU process terminated successfully.")
+        # except subprocess.TimeoutExpired:
+        #     process.kill()  # Forcefully kill if it doesn't terminate
+        #     print("CPU process killed forcefully.")
     else:
         print("No CPU process running.")
 
