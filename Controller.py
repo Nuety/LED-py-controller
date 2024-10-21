@@ -6,7 +6,7 @@ import psutil
 def start_maze():
     print("Starting maze")
     client_socket.send("Starting Maze".encode())
-    script_path = '$(pwd)/Desktop/LED-py-controller/scripts/startcpu.sh'
+    script_path = 'Desktop/LED-py-controller/scripts/startcpu.sh'
     global process
     process = subprocess.Popen(['bash', script_path])
 
@@ -19,7 +19,7 @@ def kill(proc_pid):
 def start_cpu():
     client_socket.send("Starting cpu reader".encode())
     print("Starting cpu")
-    script_path = 'scripts/startcpu.sh'
+    script_path = 'Desktop/LED-py-controller/scripts/startcpu.sh'
     global process
     process = subprocess.Popen(['bash', script_path])
 
