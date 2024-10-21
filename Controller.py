@@ -13,21 +13,21 @@ def start_cpu():
     print("Starting cpu")
     script_path = 'scripts/startcpu.sh'
     global process
-    process = subprocess.Popen(['bash', script_path])
+    process = subprocess.Popen('exec ' + script_path)
 
 def stop_process():
     client_socket.send("Stopping running process".encode())
     print("Stopping CPU")
     if process:
         # Terminate the process
-        os.killpg(os.getpgid(process.pid), signal.SIGTERM)
-        # process.terminate()  # Graceful termination
-        # try:
-        #     process.wait(timeout=5)  # Wait for the process to terminate
-        #     print("CPU process terminated successfully.")
-        # except subprocess.TimeoutExpired:
-        #     process.kill()  # Forcefully kill if it doesn't terminate
-        #     print("CPU process killed forcefully.")
+        # os.killpg(os.getpgid(process.pid), signal.SIGTERM)
+        process.terminate()  # Graceful termination
+        try:
+            process.wait(timeout=5)  # Wait for the process to terminate
+            print("CPU process terminated successfully.")
+        except subprocess.TimeoutExpired:
+            process.kill()  # Forcefully kill if it doesn't terminate
+            print("CPU process killed forcefully.")
     else:
         print("No CPU process running.")
 
