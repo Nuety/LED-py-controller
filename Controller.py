@@ -6,7 +6,7 @@ import psutil
 def start_maze():
     print("Starting maze")
     client_socket.send("Starting Maze".encode())
-    script_path = '$(pwd)/Desktop/LED-py-controller/Controller.pyscripts/startcpu.sh'
+    script_path = '$(pwd)/Desktop/LED-py-controller/scripts/startcpu.sh'
     global process
     process = subprocess.Popen(['bash', script_path])
 
