@@ -13,7 +13,7 @@ def start_cpu():
     print("Starting cpu")
     script_path = 'scripts/startcpu.sh'
     global process
-    process = subprocess.Popen(['exec ' + script_path])
+    process = subprocess.Popen('exec ' + script_path, shell=True)
 
 def stop_process():
     client_socket.send("Stopping running process".encode())
