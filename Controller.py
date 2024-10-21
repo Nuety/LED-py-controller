@@ -1,6 +1,7 @@
 import socket
 import subprocess
-
+import os
+import signal
 
 # Add functions for new programs
 def start_maze():
@@ -19,13 +20,14 @@ def stop_process():
     print("Stopping CPU")
     if process:
         # Terminate the process
-        process.terminate()  # Graceful termination
-        try:
-            process.wait(timeout=5)  # Wait for the process to terminate
-            print("CPU process terminated successfully.")
-        except subprocess.TimeoutExpired:
-            process.kill()  # Forcefully kill if it doesn't terminate
-            print("CPU process killed forcefully.")
+        os.killpg(os.getpgid(process.pid), signal.SIGTERM)
+        # process.terminate()  # Graceful termination
+        # try:
+        #     process.wait(timeout=5)  # Wait for the process to terminate
+        #     print("CPU process terminated successfully.")
+        # except subprocess.TimeoutExpired:
+        #     process.kill()  # Forcefully kill if it doesn't terminate
+        #     print("CPU process killed forcefully.")
     else:
         print("No CPU process running.")
 
