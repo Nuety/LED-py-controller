@@ -5,6 +5,10 @@ import psutil
 # Add functions for new programs
 def start_maze():
     print("Starting maze")
+    client_socket.send("Starting Maze".encode())
+    script_path = '$(pwd)/Desktop/LED-py-controller/Controller.pyscripts/startcpu.sh'
+    global process
+    process = subprocess.Popen(['bash', script_path])
 
 def kill(proc_pid):
     process = psutil.Process(proc_pid)
@@ -20,20 +24,13 @@ def start_cpu():
     process = subprocess.Popen(['bash', script_path])
 
 def stop_process():
-    client_socket.send("Stopping running process".encode())
-    print("Stopping running process")
     if process:
-        # Terminate the process
+        client_socket.send("Stopping running process".encode())
+        print("Stopping running process")
         kill(process.pid)
-        # process.terminate()  # Graceful termination
-        # try:
-        #     process.wait(timeout=5)  # Wait for the process to terminate
-        #     print("CPU process terminated successfully.")
-        # except subprocess.TimeoutExpired:
-        #     process.kill()  # Forcefully kill if it doesn't terminate
-        #     print("CPU process killed forcefully.")
     else:
-        print("No CPU process running.")
+        client_socket.send("No process running".encode())
+        print("No process running.")
 
 def default_case():
     client_socket.send("Unknown command received".encode())
