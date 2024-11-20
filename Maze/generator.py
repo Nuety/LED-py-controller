@@ -8,6 +8,7 @@ class cell:
     wall = True
     door = False
     visited = False
+    isFound = False
 
 #lazy redundancy
 def deadEnd(cell, maze):
