@@ -3,10 +3,31 @@ import subprocess
 import psutil
 
 # Add functions for new programs
-def start_maze():
+def start_dfmaze():
     print("Starting maze")
-    client_socket.send("Starting Maze".encode())
-    script_path = 'scripts/startmaze.sh'
+    client_socket.send("Starting Depth First Maze".encode())
+    script_path = 'scripts/dfstartmaze.sh'
+    global process
+    process = subprocess.Popen(['bash', script_path])
+
+def start_dfamogusmaze():
+    print("Starting maze")
+    client_socket.send("Starting Depth First Amogus Maze".encode())
+    script_path = 'scripts/dfamogusstartmaze.sh'
+    global process
+    process = subprocess.Popen(['bash', script_path])
+
+def start_wfcmaze():
+    print("Starting maze")
+    client_socket.send("Starting Wave Front Collapse Maze".encode())
+    script_path = 'scripts/wfcstartmaze.sh'
+    global process
+    process = subprocess.Popen(['bash', script_path])
+
+def start_wfcamogusmaze():
+    print("Starting maze")
+    client_socket.send("Starting Wave Front Collapse Amogus Maze".encode())
+    script_path = 'scripts/wfcamogusstartmaze.sh'
     global process
     process = subprocess.Popen(['bash', script_path])
 
@@ -38,7 +59,10 @@ def default_case():
 
 
 switcher = {
-    'maze': start_maze,
+    'dfmaze': start_dfmaze,
+    'dfamogusmaze': start_dfamogusmaze,
+    'wfcmaze': start_wfcmaze,
+    'wfcamogusmaze': start_wfcamogusmaze,
     'cpu': start_cpu,
     'stop': stop_process
 }

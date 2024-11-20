@@ -98,8 +98,8 @@ def newMaze(width: int, height: int):
     cellStack = []
 
     #init array
-    rows = int((width * 2) + 1)
-    cols = int((height * 2) + 1)
+    rows = int((height * 2) + 1)
+    cols = int((width * 2) + 1)
     mazeArr = [[cell for i in range(rows)] for j in range(cols)]
 
     #init maze cells
