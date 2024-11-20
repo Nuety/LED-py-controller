@@ -32,6 +32,12 @@ class Maze(SampleBase):
             dfsolver = solver.MazeSolver(maze, xCells, yCells)
             solution = dfsolver.solveMaze()
             
+            # Draw start and finish
+            self.matrix.SetPixel(solution[0].row, solution[0].col, pr, pg, pb)
+            self.matrix.SetPixel(solution[-1].row, solution[-1].col, pr, pg, pb)
+
+
+
             pr = 100
             pg = 20
             pb = 0
@@ -41,7 +47,7 @@ class Maze(SampleBase):
                 rTemp = int((currCell.row + prevCell.row) / 2)
                 cTemp = int((currCell.col + prevCell.col) / 2)
                 # color in temp and current cell
-                self.matrix.SetPixel(cTemp, rTemp, pr, pg, pb)
+                # self.matrix.SetPixel(cTemp, rTemp, pr, pg, pb)
                 time.sleep(0.03)
                 self.matrix.SetPixel(currCell.col, currCell.row, pr, pg, pb)
                 time.sleep(0.03)
