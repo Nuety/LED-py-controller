@@ -22,37 +22,38 @@ class MazeSolver:
         self.lastcellCol = random.randrange(1, (self.mazeCellLenCol * 2) + 1, 2)
 
     #Breadth first search
-    def solveMaze(self, maze):
+    def solveMaze(self):
         activeCells = []
         neighborList = []
         indexList = []
-        indexAcc = 0
         solution = []
+        indexAcc = 0
 
         #set first cell
-        activeCells.append(maze[self.firstcellRow][self.firstcellCol])
-        indexList.append([0, maze[self.firstcellRow][self.firstcellCol].id])
+        print(self.maze[self.firstcellRow][self.firstcellCol].id)
+        activeCells.append(self.maze[self.firstcellRow][self.firstcellCol])
+        indexList.append([0, self.maze[self.firstcellRow][self.firstcellCol].id])
 
 
         complete = False
         while len(activeCells) != 0 and not complete:
             cell = activeCells.pop(0)
             cell.visited = True
-            if generator.hasNeighbor(cell, maze):
+            if generator.hasNeighbor(cell, self.maze):
                 neighborList.clear()
 
                 #north
-                if maze[cell.row - 1][cell.col].wall == False:
-                    neighborList.append(maze[cell.row - 2][cell.col])
+                if self.maze[cell.row - 1][cell.col].wall == False:
+                    neighborList.append(self.maze[cell.row - 2][cell.col])
                 #south
-                if maze[cell.row + 1][cell.col].wall == False:
-                    neighborList.append(maze[cell.row + 2][cell.col])
+                if self.maze[cell.row + 1][cell.col].wall == False:
+                    neighborList.append(self.maze[cell.row + 2][cell.col])
                 #east
-                if maze[cell.row][cell.col + 1].wall == False:
-                    neighborList.append(maze[cell.row][cell.col + 2])
+                if self.maze[cell.row][cell.col + 1].wall == False:
+                    neighborList.append(self.maze[cell.row][cell.col + 2])
                 #west
-                if maze[cell.row][cell.col - 1].wall == False:
-                    neighborList.append(maze[cell.row][cell.col - 2])
+                if self.maze[cell.row][cell.col - 1].wall == False:
+                    neighborList.append(self.maze[cell.row][cell.col - 2])
 
                 for c in reversed(range(len(neighborList))):
                     if neighborList[c].visited:
@@ -62,12 +63,12 @@ class MazeSolver:
 
                     rTemp = int((cell.row + neighbor.row) / 2)
                     cTemp = int((cell.col + neighbor.col) / 2)
-                    maze[rTemp][cTemp].wall = False
+                    self.maze[rTemp][cTemp].wall = False
 
 
                     #base.matrix.SetPixel(cell.col, cell.row, 180 , 130 + abs(math.sin(colorBias) * 100) , 0)
 
-                    if neighbor.row == len(maze) - 2 and neighbor.col == len(maze[0]) - 2:
+                    if neighbor.row == len(self.maze) - 2 and neighbor.col == len(self.maze[0]) - 2:
                         complete = True
                         neighborList.clear()
                         break
@@ -76,7 +77,7 @@ class MazeSolver:
             indexAcc += 1
 
         # Select 
-        currCell = maze[len(maze) - 1][len(maze[0]) - 1]
+        currCell = self.maze[len(self.maze) - 1][len(self.maze[0]) - 1]
 
         # base.matrix.SetPixel(cell.col, cell.row, pr, pg, pb)
         # base.matrix.SetPixel(len(maze)-2, len(maze[0])-2, pr, pg, pb)
@@ -87,9 +88,9 @@ class MazeSolver:
 
         maze1D = []
         #create a 1d list of the maze
-        for i in range(len(maze)):
-            for j in range(len(maze[0])):
-                maze1D.append(maze[i][j])
+        for i in range(len(self.maze)):
+            for j in range(len(self.maze[0])):
+                maze1D.append(self.maze[i][j])
 
         while True:
             duoList = indexList[currIndex]
