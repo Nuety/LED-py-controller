@@ -21,17 +21,34 @@ class Maze(SampleBase):
 
         while True:
             maze = wfcgenerator.newMaze(int(xCells), int(yCells))
+            dfsolver = solver.MazeSolver(maze, xCells, yCells)
+            solution = dfsolver.solveMaze()
+            
             for row in maze:
                 for cell in row:
                     if cell.wall:
                         self.matrix.SetPixel(cell.col, cell.row, 0, 40, 30)
                     elif cell.door:
-                        self.matrix.SetPixel(cell.col, cell.row, 150, 0, 0)
+                        self.matrix.SetPixel(cell.col, cell.row, 139,69,19)
                     else:
                         self.matrix.SetPixel(cell.col, cell.row, 0, 0, 5)
+            # Draw start and finish
+            self.matrix.SetPixel(solution[-1].col, solution[-1].row, 0, 150, 0)
 
-            solver.solveMaze(maze, self)
-
+            pr = 100
+            pg = 20
+            pb = 0
+            prevCell = solution[0]
+            for currCell in solution:
+                # find pixel between two cells
+                rTemp = int((currCell.row + prevCell.row) / 2)
+                cTemp = int((currCell.col + prevCell.col) / 2)
+                # color in temp and current cell
+                self.matrix.SetPixel(cTemp, rTemp, pr, pg, pb)
+                time.sleep(0.03)
+                self.matrix.SetPixel(currCell.col, currCell.row, pr, pg, pb)
+                time.sleep(0.03)
+                prevCell = currCell
 
             time.sleep(3)
 
