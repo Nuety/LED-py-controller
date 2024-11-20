@@ -37,11 +37,8 @@ class MazeSolver:
         complete = False 
         while len(activeCells) != 0 and not complete:
             cell = activeCells.pop(0)
-            colorBias += 0.001
-            if colorBias > 0.3:
-                colorBias = 0
 
-            self.visual.draw(cell.col, cell.row, (180 - abs(math.sin(colorBias) * 50), 130 + abs(math.sin(colorBias) * 100) , 0))
+
             
             cell.visited = True
             if generator.hasNeighbor(cell, self.maze):
@@ -72,9 +69,7 @@ class MazeSolver:
                         cTemp = int((cell.col + neighbor.col) / 2)
                         self.maze[rTemp][cTemp].wall = False
 
-                        
-                        # self.visual.draw(cTemp, rTemp, (180 , 130 + abs(math.sin(colorBias) * 100) , 0))
-                        
+                    
 
                         if neighbor.row == self.lastcellRow and neighbor.col == self.lastcellCol:
                             complete = True
