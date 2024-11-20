@@ -29,9 +29,23 @@ class Maze(SampleBase):
                         self.matrix.SetPixel(cell.col, cell.row, 150, 0, 0)
                     else:
                         self.matrix.SetPixel(cell.col, cell.row, 0, 0, 5)
-
-            # solver.solveMaze(maze, self)
-
+            solver = solver.MazeSolver(maze, width, height)
+            solution = solver.solveMaze(maze)
+            
+            pr = 100
+            pg = 20
+            pb = 0
+            prevCell = solution[0]
+            for currCell in solution:
+                # find pixel between two cells
+                rTemp = int((currCell.row + prevCell.row) / 2)
+                cTemp = int((currCell.col + prevCell.col) / 2)
+                # color in temp and current cell
+                self.matrix.SetPixel(cTemp, rTemp, pr, pg, pb)
+                time.sleep(0.03)
+                self.matrix.SetPixel(currCell.col, currCell.row, pr, pg, pb)
+                time.sleep(0.03)
+                prevCell = cell
 
             time.sleep(3)
 
