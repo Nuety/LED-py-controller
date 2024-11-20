@@ -33,10 +33,6 @@ class Maze(SampleBase):
                     else:
                         self.matrix.SetPixel(cell.col, cell.row, 0, 0, 5)
 
-            pr = 100
-            pg = 20
-            pb = 0
-
             for amog in amogi:
                 skip = False
                 for cell in amog:
@@ -50,8 +46,7 @@ class Maze(SampleBase):
                 if not skip:
                     for cell in amog:
                         if not cell.wall:
-                            self.matrix.SetPixel(cell.col, cell.row, pr, pg, pb)
-                            self.visual.draw(cell.col, cell.row, (255,0,0))
+                            self.matrix.SetPixel(cell.col, cell.row, 255, 0, 0)
                         cell.visited = True
 
             time.sleep(3)

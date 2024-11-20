@@ -21,8 +21,8 @@ class Maze(SampleBase):
 
         while True:
             maze = wfcgenerator.newMaze(int(xCells), int(yCells))
-            dfsolver = solver.MazeSolver(maze, xCells, yCells)
-            solution = dfsolver.solveMaze()
+            wfcsolver = solver.MazeSolver(maze, xCells, yCells)
+            solution = wfcsolver.solveMaze()
             
             for row in maze:
                 for cell in row:

@@ -21,8 +21,8 @@ class Maze(SampleBase):
 
         while True:
             maze = wfcgenerator.newMaze(int(xCells), int(yCells))
-            dfsolver = solver.MazeSolver(maze, xCells, yCells)
-            amogi = dfsolver.solveFindAmogus()
+            wfcsolver = solver.MazeSolver(maze, xCells, yCells)
+            amogi = wfcsolver.solveFindAmogus()
             
             for row in maze:
                 for cell in row:
@@ -30,10 +30,6 @@ class Maze(SampleBase):
                         self.matrix.SetPixel(cell.col, cell.row, 0, 40, 30)
                     else:
                         self.matrix.SetPixel(cell.col, cell.row, 0, 0, 5)
-            
-            pr = 100
-            pg = 20
-            pb = 0
 
             for amog in amogi:
                 skip = False
@@ -48,8 +44,7 @@ class Maze(SampleBase):
                 if not skip:
                     for cell in amog:
                         if not cell.wall:
-                            self.matrix.SetPixel(cell.col, cell.row, pr, pg, pb)
-                            self.visual.draw(cell.col, cell.row, (255,0,0))
+                            self.matrix.SetPixel(cell.col, cell.row, 255, 0, 0)
                         cell.visited = True
 
 
