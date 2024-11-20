@@ -102,10 +102,6 @@ class MazeSolver:
             currCell = maze1D[indexList[currIndex][1]]
             solution.append(currCell)
 
-            print(f"row {currCell.row}")
-            print(f"col {currCell.col}")
-            print(f"goal row {self.firstcellCol}")
-            print(f"goal col {self.firstcellCol}")
-            if currCell.row == self.lastcellRow and currCell.col == self.lastcellCol:
+            if currCell.row == self.firstcellRow and currCell.col == self.firstcellCol:
 
                 return solution
