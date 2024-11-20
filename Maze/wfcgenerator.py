@@ -23,7 +23,6 @@ class displaycell:
         self.id = inc
     wall = True
     visited = False
-    door = False
     isFound = False
     
     #debug i think
