@@ -172,14 +172,12 @@ def findRotation(cell):
     cellRot = cell.dir
 
     #rotation of block
-    match cell.entropy:
-        case 0:
-            tileRot = [0,1,0,1]
-        case 1:
-            tileRot = [0,0,1,1]
-        #this must exist
-        case 2:
-            tileRot = [1,0,0,0]
+    if cell.entropy == 0:
+        tileRot = [0,1,0,1]
+    elif cell.entropy == 1:
+        tileRot = [0,0,1,1]
+    else:
+        tileRot = [1,0,0,0]
 
     while True:
         #random to skip selection so not all will look down
