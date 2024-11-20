@@ -272,6 +272,7 @@ def newMaze(width: int, height: int):
             cellArr[r][c-1].dir[1] = cellArr[r][c-1].dir[1] - 1
             refreshEntropy(cellArr[r][c-1])
 
+
         neighbors = locateNeighbor(cellArr, currCell)
         if neighbors == []:
             continue
@@ -288,5 +289,17 @@ def newMaze(width: int, height: int):
         for cell in row:
             #remove wall of self
             mazeArr[int((2 * cell.row) + 1)][int((2 * cell.col) + 1)].wall = False
-
+            #remove wall of passage
+            if cell.dir[0] == 1:
+                mazeArr[int((2 * cell.row))][int((2 * cell.col) + 1)].wall = False
+                # callback(callHelp(int((2 * cell.row)), int((2 * cell.col) + 1), False))
+            if cell.dir[1] == 1:
+                mazeArr[int((2 * cell.row) + 1)][int((2 * cell.col) + 2)].wall = False
+                # callback(callHelp(int((2 * cell.row) + 1), int((2 * cell.col) + 2), False))
+            if cell.dir[2] == 1:
+                mazeArr[int((2 * cell.row) + 2)][int((2 * cell.col) + 1)].wall = False
+                # callback(callHelp(int((2 * cell.row) + 2), int((2 * cell.col) + 1), False))
+            if cell.dir[3] == 1:
+                mazeArr[int((2 * cell.row) + 1)][int((2 * cell.col))].wall = False
+                # callback(callHelp(int((2 * cell.row) + 1), int((2 * cell.col)), False))
     return mazeArr
