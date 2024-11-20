@@ -33,8 +33,8 @@ class Maze(SampleBase):
             solution = dfsolver.solveMaze()
             
             # Draw start and finish
-            self.matrix.SetPixel(solution[0].row, solution[0].col, pr, pg, pb)
-            self.matrix.SetPixel(solution[-1].row, solution[-1].col, pr, pg, pb)
+            self.matrix.SetPixel(solution[0].row, solution[0].col, 0, 150, 0)
+            self.matrix.SetPixel(solution[-1].row, solution[-1].col, 150, 0, 0)
 
 
 
