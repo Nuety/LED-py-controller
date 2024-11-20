@@ -207,7 +207,7 @@ def findRotation(cell):
         if count == 4:
             return tileRot
 
-def newMaze(width: int, height: int, callback = None):
+def newMaze(width: int, height: int):
     #random numbers
     random.seed()
 
@@ -254,8 +254,7 @@ def newMaze(width: int, height: int, callback = None):
         r = currCell.row - 1
         c = currCell.col - 1
 
-        if callback:
-            callback(callHelp(currCell.row,currCell.col, True))
+
         #up
         if closeArr[0] == 1 and cellArr[r-1][c].dir[2] != 0:
             cellArr[r-1][c].dir[2] = cellArr[r-1][c].dir[2] - 1
@@ -273,16 +272,6 @@ def newMaze(width: int, height: int, callback = None):
             cellArr[r][c-1].dir[1] = cellArr[r][c-1].dir[1] - 1
             refreshEntropy(cellArr[r][c-1])
 
-        # Callback rendering
-        if currCell.dir[0] == 1:
-            callback(callHelp(int((2 * currCell.row)), int((2 * currCell.col) + 1), False))
-        if currCell.dir[1] == 1:
-            callback(callHelp(int((2 * currCell.row) + 1), int((2 * currCell.col) + 2), False))
-        if currCell.dir[2] == 1:
-            callback(callHelp(int((2 * currCell.row) + 2), int((2 * currCell.col) + 1), False))
-        if currCell.dir[3] == 1:
-            callback(callHelp(int((2 * currCell.row) + 1), int((2 * currCell.col)), False))
-        
         neighbors = locateNeighbor(cellArr, currCell)
         if neighbors == []:
             continue
@@ -299,17 +288,5 @@ def newMaze(width: int, height: int, callback = None):
         for cell in row:
             #remove wall of self
             mazeArr[int((2 * cell.row) + 1)][int((2 * cell.col) + 1)].wall = False
-            #remove wall of passage
-            if cell.dir[0] == 1:
-                mazeArr[int((2 * cell.row))][int((2 * cell.col) + 1)].wall = False
-                # callback(callHelp(int((2 * cell.row)), int((2 * cell.col) + 1), False))
-            if cell.dir[1] == 1:
-                mazeArr[int((2 * cell.row) + 1)][int((2 * cell.col) + 2)].wall = False
-                # callback(callHelp(int((2 * cell.row) + 1), int((2 * cell.col) + 2), False))
-            if cell.dir[2] == 1:
-                mazeArr[int((2 * cell.row) + 2)][int((2 * cell.col) + 1)].wall = False
-                # callback(callHelp(int((2 * cell.row) + 2), int((2 * cell.col) + 1), False))
-            if cell.dir[3] == 1:
-                mazeArr[int((2 * cell.row) + 1)][int((2 * cell.col))].wall = False
-                # callback(callHelp(int((2 * cell.row) + 1), int((2 * cell.col)), False))
+
     return mazeArr
