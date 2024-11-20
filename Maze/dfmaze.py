@@ -46,15 +46,12 @@ class Maze(SampleBase):
                 # find pixel between two cells
                 rTemp = int((currCell.row + prevCell.row) / 2)
                 cTemp = int((currCell.col + prevCell.col) / 2)
-                print(f"rtemp {rTemp}")
-                print(f"pr {prevCell.row}")
-                print(f"cr {currCell.row}")
                 # color in temp and current cell
                 self.matrix.SetPixel(cTemp, rTemp, pr, pg, pb)
                 time.sleep(0.03)
                 self.matrix.SetPixel(currCell.col, currCell.row, pr, pg, pb)
                 time.sleep(0.03)
-                prevCell = cell
+                prevCell = currCell
 
             time.sleep(3)
 
