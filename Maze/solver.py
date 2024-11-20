@@ -110,8 +110,8 @@ class MazeSolver:
     def solveFindAmogus(self):
         Amogi = []
 
-        for row in range(1, (self.mazeCellLenRow * 2) - 3, 2):
-            for col in range(1, (self.mazeCellLenCol * 2) - 1, 2):
+        for row in range(1, (int(self.mazeCellLenRow * 2)) - 3, 2):
+            for col in range(1, (int(self.mazeCellLenCol * 2)) - 1, 2):
                 upAmog = []
                 leftAmog = []
                 for aCol in range(col, col + 3):
@@ -122,8 +122,8 @@ class MazeSolver:
                 Amogi.append(upAmog)
                 Amogi.append(leftAmog)
 
-        for row in range(1, (self.mazeCellLenRow * 2) - 3, 2):
-            for col in range(1, (self.mazeCellLenCol * 2) - 1, 2):
+        for row in range(1, (int(self.mazeCellLenRow * 2)) - 3, 2):
+            for col in range(1, (int(self.mazeCellLenCol * 2)) - 1, 2):
                 downAmog = []
                 rightAmog = []
                 for aCol in range(col, col - 3, -1):
