@@ -29,7 +29,7 @@ class Maze(SampleBase):
                         self.matrix.SetPixel(cell.col, cell.row, 150, 0, 0)
                     else:
                         self.matrix.SetPixel(cell.col, cell.row, 0, 0, 5)
-            dfsolver = solver.MazeSolver(maze, width, height)
+            dfsolver = solver.MazeSolver(maze, xCells, yCells)
             solution = dfsolver.solveMaze()
             
             pr = 100
