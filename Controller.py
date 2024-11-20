@@ -6,28 +6,28 @@ import psutil
 def start_dfmaze():
     print("Starting maze")
     client_socket.send("Starting Depth First Maze".encode())
-    script_path = 'scripts/dfstartmaze.sh'
+    script_path = 'scripts/startdfmaze.sh'
     global process
     process = subprocess.Popen(['bash', script_path])
 
 def start_dfamogusmaze():
     print("Starting maze")
     client_socket.send("Starting Depth First Amogus Maze".encode())
-    script_path = 'scripts/dfamogusstartmaze.sh'
+    script_path = 'scripts/startdfamogusmaze.sh'
     global process
     process = subprocess.Popen(['bash', script_path])
 
 def start_wfcmaze():
     print("Starting maze")
     client_socket.send("Starting Wave Front Collapse Maze".encode())
-    script_path = 'scripts/wfcstartmaze.sh'
+    script_path = 'scripts/startwfcmaze.sh'
     global process
     process = subprocess.Popen(['bash', script_path])
 
 def start_wfcamogusmaze():
     print("Starting maze")
     client_socket.send("Starting Wave Front Collapse Amogus Maze".encode())
-    script_path = 'scripts/wfcamogusstartmaze.sh'
+    script_path = 'scripts/startwfcamogusmaze.sh'
     global process
     process = subprocess.Popen(['bash', script_path])
 
