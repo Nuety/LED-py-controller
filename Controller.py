@@ -56,6 +56,13 @@ def stop_process():
 def default_case():
     client_socket.send("Unknown command received".encode())
     print("Unknown instruction")
+    print("Use either")
+    print("dfmaze for depth first maze")
+    print("dfamogusmaze for depth first among us solver")
+    print("wfcmaze for wave front collapse maze")
+    print("wfcamogusmaze for wave front collapse among us solver")
+    print("cpu to start cpu reader")
+    print("stop to stop the server")
 
 
 switcher = {
