@@ -32,6 +32,8 @@ class MazeSolver:
         #set first cell
         print(len(self.maze))
         print(len(self.maze[0]))
+        print(self.firstcellRow)
+        print(self.firstcellCol)
         activeCells.append(self.maze[self.firstcellRow][self.firstcellCol])
         indexList.append([0, self.maze[self.firstcellRow][self.firstcellCol].id])
 
