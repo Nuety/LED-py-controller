@@ -33,8 +33,7 @@ class Maze(SampleBase):
                     else:
                         self.matrix.SetPixel(cell.col, cell.row, 0, 0, 5)
             # Draw start and finish
-            self.matrix.SetPixel(solution[0].col, solution[0].row, 0, 150, 0)
-            self.matrix.SetPixel(solution[-1].col, solution[-1].row, 150, 0, 0)
+            self.matrix.SetPixel(solution[-1].col, solution[-1].row, 0, 150, 0)
 
 
 
