@@ -72,7 +72,6 @@ class MazeSolver:
                     
 
                         if neighbor.row == self.lastcellRow and neighbor.col == self.lastcellCol:
-                            print("done")
                             complete = True
                             neighborList.clear()
                             break
@@ -104,4 +103,6 @@ class MazeSolver:
             solution.append(currCell)
 
             if currCell.row == self.lastcellRow and currCell.col == self.lastcellCol:
+                print("done")
+
                 return solution
