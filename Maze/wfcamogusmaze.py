@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import time
+import wfcgenerator
 import solver
 import os
 import sys
-import wfcgenerator
 
 script_dir = os.path.abspath(os.path.dirname(__file__))
 project_root = os.path.abspath(os.path.join(script_dir, '..'))
@@ -21,16 +21,37 @@ class Maze(SampleBase):
 
         while True:
             maze = wfcgenerator.newMaze(int(xCells), int(yCells))
+            dfsolver = solver.MazeSolver(maze, xCells, yCells)
+            amogi = dfsolver.solveFindAmogus()
+            
             for row in maze:
                 for cell in row:
                     if cell.wall:
                         self.matrix.SetPixel(cell.col, cell.row, 0, 40, 30)
-                    elif cell.door:
-                        self.matrix.SetPixel(cell.col, cell.row, 150, 0, 0)
                     else:
                         self.matrix.SetPixel(cell.col, cell.row, 0, 0, 5)
+            
+            pr = 100
+            pg = 20
+            pb = 0
 
-            solver.solveFindAmogus(maze, self)
+            for amog in amogi:
+                skip = False
+                for cell in amog:
+                    if cell.visited:
+                        skip = True
+                if amog[5].wall or amog[7].wall or amog[3].wall or amog[13].wall or not amog[9].wall:
+                    skip = True
+                if amog[1].wall == amog[11].wall:
+                    skip = True
+
+                if not skip:
+                    for cell in amog:
+                        if not cell.wall:
+                            self.matrix.SetPixel(cell.col, cell.row, pr, pg, pb)
+                            self.visual.draw(cell.col, cell.row, (255,0,0))
+                        cell.visited = True
+
 
 
             time.sleep(3)

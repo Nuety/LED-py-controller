@@ -105,3 +105,31 @@ class MazeSolver:
             if currCell.row == self.firstcellRow and currCell.col == self.firstcellCol:
 
                 return solution
+    
+    #amogus
+    def solveFindAmogus(self):
+        Amogi = []
+
+        for row in range(1, (self.mazeCellLenRow * 2) - 3, 2):
+            for col in range(1, (self.mazeCellLenCol * 2) - 1, 2):
+                upAmog = []
+                leftAmog = []
+                for aCol in range(col, col + 3):
+                    for aRow in range(row, row + 5):
+                        upAmog.append(self.maze[aRow][aCol])
+                        leftAmog.append(self.maze[aCol][aRow])
+                
+                Amogi.append(upAmog)
+                Amogi.append(leftAmog)
+
+        for row in range(1, (self.mazeCellLenRow * 2) - 3, 2):
+            for col in range(1, (self.mazeCellLenCol * 2) - 1, 2):
+                downAmog = []
+                rightAmog = []
+                for aCol in range(col, col - 3, -1):
+                    for aRow in range(row, row - 5, -1):
+                        downAmog.append(self.maze[aCol][aRow])
+                        rightAmog.append(self.maze[aRow][aCol])
+                Amogi.append(downAmog)
+                Amogi.append(rightAmog)
+        return Amogi
