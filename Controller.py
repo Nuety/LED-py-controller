@@ -54,7 +54,7 @@ def stop_process():
         print("No process running.")
 
 def default_case():
-    client_socket.send("Unknown command received\nUse either\ndfmaze for depth first maze\ndfamogusmaze for depth first among us solver\nwfcmaze for wave front collapse maze\nwfcamogusmaze for wave front collapse among us solver\ncpu to start cpu reader\nstop to stop the server".encode())
+    client_socket.send("Unknown command received\nUse either\ndfmaze for depth first maze\ndfamogusmaze for depth first among us solver\nwfcmaze for wave front collapse maze\nwfcamogusmaze for wave front collapse among us solver\ncpu to start cpu reader\nstop to stop the running process".encode())
     print("Unknown instruction")
 
 

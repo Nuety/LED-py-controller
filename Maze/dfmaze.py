@@ -30,7 +30,7 @@ class Maze(SampleBase):
                     else:
                         self.matrix.SetPixel(cell.col, cell.row, 0, 0, 5)
 
-            solver.solveMaze(maze, self)
+            # solver.solveMaze(maze, self)
 
 
             time.sleep(3)
