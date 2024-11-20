@@ -104,6 +104,8 @@ class MazeSolver:
 
             print(currCell.row)
             print(currCell.col)
+            print(self.lastcellRow)
+            print(self.lastcellCol)
             if currCell.row == self.lastcellRow and currCell.col == self.lastcellCol:
 
                 return solution
