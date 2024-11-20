@@ -35,8 +35,6 @@ class Maze(SampleBase):
             # Draw start and finish
             self.matrix.SetPixel(solution[-1].col, solution[-1].row, 0, 150, 0)
 
-
-
             pr = 100
             pg = 20
             pb = 0
