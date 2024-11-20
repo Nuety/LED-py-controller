@@ -29,7 +29,7 @@ class Maze(SampleBase):
                     if cell.wall:
                         self.matrix.SetPixel(cell.col, cell.row, 0, 40, 30)
                     elif cell.door:
-                        self.matrix.SetPixel(cell.col, cell.row, 150, 0, 0)
+                        self.matrix.SetPixel(cell.col, cell.row, 139,69,19)
                     else:
                         self.matrix.SetPixel(cell.col, cell.row, 0, 0, 5)
             # Draw start and finish
